@@ -11,8 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        myView.flexibility = 4f
         myView.setOnClickListener {
-            Log.e("AA","AAAAAA")
+            Log.e("View","Clicked")
         }
     }
 }
