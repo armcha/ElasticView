@@ -1,5 +1,6 @@
 package io.armcha.sampleapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -11,9 +12,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        myView.flexibility = 4f
-        myView.setOnClickListener {
-            Log.e("View","Clicked")
+        elasticView.flexibility = 8f
+//        elasticView.setOnClickListener {
+//            Log.e("elasticView","Clicked")
+//        }
+
+        buttonElasticView.flexibility = 3f
+        buttonElasticView.setOnClickListener {
+            Log.e("buttonElasticView","Clicked")
+            startActivity(Intent(this,RecyclerViewActivity::class.java))
         }
     }
 }

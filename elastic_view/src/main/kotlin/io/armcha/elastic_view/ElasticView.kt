@@ -3,12 +3,12 @@ package io.armcha.elastic_view
 import android.content.Context
 import android.graphics.*
 import android.support.v4.view.animation.FastOutSlowInInterpolator
+import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
-import android.widget.FrameLayout
 
-class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
+class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : CardView(context, attrs) {
 
     private val ANIMATION_DURATION = 200L
     private val ANIMATION_DURATION_SHORT = 100L
@@ -27,12 +27,25 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : F
     private var cx = 0f
     private var cy = 0f
 
+    init {
+        setOnClickListener { }
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        processTouchEvent(event)
+        return super.dispatchTouchEvent(event)
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        log(flexibility.toString())
+        processTouchEvent(event)
+        return super.onTouchEvent(event)
+    }
+
+    private fun processTouchEvent(event: MotionEvent) {
         val verticalRotation = calculateRotation((event.x * flexibility * 2) / width)
         val horizontalRotation = -calculateRotation((event.y * flexibility * 2) / height)
 
-        val action = event.actionMasked
+        val action = event.action
         when (action) {
             MotionEvent.ACTION_DOWN -> {
                 isActionUpPerformed = false
@@ -78,13 +91,9 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : F
                             .start()
 
                 }
-                cx = -10f
-                cy = -10f
-                invalidate()
                 log("Action was UP")
             }
         }
-        return super.onTouchEvent(event)
     }
 
     private fun calculateRotation(value: Float): Float {
@@ -99,6 +108,8 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : F
 
     override fun dispatchDraw(canvas: Canvas?) {
         super.dispatchDraw(canvas)
+        if (isActionUpPerformed)
+            return
         val path = Path()
         path.moveTo(cx, 0f)
         path.lineTo(cx, height.toFloat())
