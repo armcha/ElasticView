@@ -32,10 +32,7 @@ class SimpleAdapter : RecyclerView.Adapter<SimpleAdapter.ViewHolder>() {
             Picasso.get()
                     .load(imageUrl)
                     .into(itemView.imageView)
-            itemView.nameText.text = "Item $adapterPosition"
-            itemView.setOnClickListener {
-
-            }
+            itemView.nameText.text = "Item for position $adapterPosition"
         }
     }
 }

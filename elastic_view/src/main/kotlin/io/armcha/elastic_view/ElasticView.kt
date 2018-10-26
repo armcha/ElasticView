@@ -1,7 +1,7 @@
 package io.armcha.elastic_view
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
@@ -16,6 +16,10 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : C
     private var isAnimating = false
     private var isActionUpPerformed = false
 
+    private val debugPath by lazy {
+        DebugPath(this)
+    }
+
     var flexibility = 5f
         set(value) {
             if (value !in 1f..15f) {
@@ -24,11 +28,8 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : C
             field = value
         }
 
-    private var cx = 0f
-    private var cy = 0f
-
     init {
-        setOnClickListener { }
+        isClickable = true
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -45,51 +46,50 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : C
         val verticalRotation = calculateRotation((event.x * flexibility * 2) / width)
         val horizontalRotation = -calculateRotation((event.y * flexibility * 2) / height)
 
-        val action = event.action
+        val action = event.actionMasked
         when (action) {
             MotionEvent.ACTION_DOWN -> {
-                isActionUpPerformed = false
-                animate()
-                        .rotationY(verticalRotation)
-                        .rotationX(horizontalRotation)
-                        .setDuration(ANIMATION_DURATION_SHORT)
-                        .setInterpolator(FastOutSlowInInterpolator())
-                        .withStartAction { isAnimating = true }
-                        .withEndAction {
-                            if (isActionUpPerformed) {
-                                animate()
-                                        .rotationX(0f)
-                                        .rotationY(0f)
-                                        .setDuration(ANIMATION_DURATION)
-                                        .setInterpolator(FastOutSlowInInterpolator())
-                                        .start()
-                            } else {
-                                isAnimating = false
+                animate().apply {
+                    rotationY(verticalRotation)
+                    rotationX(horizontalRotation)
+                    duration = ANIMATION_DURATION_SHORT
+                    interpolator = FastOutSlowInInterpolator()
+                    withStartAction {
+                        isActionUpPerformed = false
+                        isAnimating = true
+                    }
+                    withEndAction {
+                        if (isActionUpPerformed) {
+                            animate().apply {
+                                rotationX(0f)
+                                rotationY(0f)
+                                duration = ANIMATION_DURATION
+                                interpolator = FastOutSlowInInterpolator()
+                                start()
                             }
+                        } else {
+                            isAnimating = false
                         }
-                        .start()
-                cx = event.x
-                cy = event.y
+                    }
+                    start()
+                }
                 log("Action was DOWN")
             }
             MotionEvent.ACTION_MOVE -> {
                 rotationY = verticalRotation
                 rotationX = horizontalRotation
-                cx = event.x
-                cy = event.y
-                invalidate()
                 log("Action was MOVE")
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_OUTSIDE -> {
                 isActionUpPerformed = true
                 if (!isAnimating) {
-                    animate()
-                            .rotationX(0f)
-                            .rotationY(0f)
-                            .setDuration(ANIMATION_DURATION)
-                            .setInterpolator(FastOutSlowInInterpolator())
-                            .start()
-
+                    animate().apply {
+                        rotationX(0f)
+                        rotationY(0f)
+                        duration = ANIMATION_DURATION
+                        interpolator = FastOutSlowInInterpolator()
+                        start()
+                    }
                 }
                 log("Action was UP")
             }
@@ -108,23 +108,7 @@ class ElasticView constructor(context: Context, attrs: AttributeSet? = null) : C
 
     override fun dispatchDraw(canvas: Canvas?) {
         super.dispatchDraw(canvas)
-        if (isActionUpPerformed)
-            return
-        val path = Path()
-        path.moveTo(cx, 0f)
-        path.lineTo(cx, height.toFloat())
-        val pathSecond = Path()
-        pathSecond.moveTo(0f, cy)
-        pathSecond.lineTo(width.toFloat(), cy)
-        val paint = Paint().apply {
-            style = Paint.Style.STROKE
-            color = Color.WHITE
-            strokeWidth = 2f
-            pathEffect = DashPathEffect(floatArrayOf(20f, 10f), 0f)
-        }
-        canvas?.drawPath(path, paint)
-        canvas?.drawPath(pathSecond, paint)
-        canvas?.drawCircle(cx, cy, 15f, Paint().apply { style = Paint.Style.FILL;color = Color.WHITE })
+        debugPath.onDispatchDraw(canvas)
     }
 
     private fun log(message: String) {

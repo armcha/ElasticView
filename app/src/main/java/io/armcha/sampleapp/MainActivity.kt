@@ -12,15 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        elasticView.flexibility = 8f
-//        elasticView.setOnClickListener {
-//            Log.e("elasticView","Clicked")
-//        }
+        imageElasticView.flexibility = 8f
 
-        buttonElasticView.flexibility = 3f
         buttonElasticView.setOnClickListener {
-            Log.e("buttonElasticView","Clicked")
-            startActivity(Intent(this,RecyclerViewActivity::class.java))
+            startActivity(Intent(this, RecyclerViewActivity::class.java))
         }
     }
 }
