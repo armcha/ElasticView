@@ -22,13 +22,13 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
     private val _shineProvider by lazy {
         ShineProvider(this)
     }
-    //Will be available in next version
+    //Will be available in next versions
     private var isShineEnabled = false
 
     var flexibility = 5f
         set(value) {
-            if (value !in 1f..15f) {
-                throw IllegalArgumentException("Flexibility must be between [1f..15f].")
+            if (value !in 1f..10f) {
+                throw IllegalArgumentException("Flexibility must be between [1f..10f].")
             }
             field = value
         }
