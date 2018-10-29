@@ -1,4 +1,4 @@
-package io.armcha.elastic_view
+package io.armcha.elasticview
 
 import android.content.Context
 import android.graphics.Canvas
@@ -13,15 +13,17 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
     private val ANIMATION_DURATION = 200L
     private val ANIMATION_DURATION_SHORT = 100L
 
-    private var isAnimating = false
-    private var isActionUpPerformed = false
+    private var _isAnimating = false
+    private var _isActionUpPerformed = false
 
-    private val debugPath by lazy {
+    private val _debugPath by lazy {
         DebugPath(this)
     }
-    private val shineProvider by lazy {
+    private val _shineProvider by lazy {
         ShineProvider(this)
     }
+    //Will be available in next version
+    private var isShineEnabled = false
 
     var flexibility = 5f
         set(value) {
@@ -32,10 +34,20 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
         }
 
     var isDebugPathEnabled = false
-    var isShineEnabled = false
 
     init {
         isClickable = true
+        init(attrs)
+    }
+
+    private fun init(attrs: AttributeSet?) {
+        val typedArray = context.obtainStyledAttributes(
+                attrs, R.styleable.ElasticView)
+
+        if (typedArray.hasValue(R.styleable.ElasticView_flexibility)) {
+            flexibility = typedArray.getFloat(R.styleable.ElasticView_flexibility, flexibility)
+        }
+        typedArray.recycle()
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -43,17 +55,12 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
         return super.dispatchTouchEvent(event)
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        processTouchEvent(event)
-        return super.onTouchEvent(event)
-    }
-
     override fun dispatchDraw(canvas: Canvas?) {
         super.dispatchDraw(canvas)
         if (isDebugPathEnabled)
-            debugPath.onDispatchDraw(canvas)
+            _debugPath.onDispatchDraw(canvas)
         if (isShineEnabled)
-            shineProvider.onDispatchDraw(canvas)
+            _shineProvider.onDispatchDraw(canvas)
     }
 
     private fun processTouchEvent(event: MotionEvent) {
@@ -67,14 +74,14 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
                     rotationX(horizontalRotation)
                     duration = ANIMATION_DURATION_SHORT
                     withStartAction {
-                        isActionUpPerformed = false
-                        isAnimating = true
+                        _isActionUpPerformed = false
+                        _isAnimating = true
                     }
                     withEndAction {
-                        if (isActionUpPerformed) {
+                        if (_isActionUpPerformed) {
                             animateToOriginalPosition()
                         } else {
-                            isAnimating = false
+                            _isAnimating = false
                         }
                     }
                 }
@@ -84,8 +91,8 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
                 rotationX = horizontalRotation
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_OUTSIDE -> {
-                isActionUpPerformed = true
-                if (!isAnimating) {
+                _isActionUpPerformed = true
+                if (!_isAnimating) {
                     animateToOriginalPosition()
                 }
             }

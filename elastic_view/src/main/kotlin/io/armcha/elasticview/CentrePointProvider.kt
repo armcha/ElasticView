@@ -1,9 +1,9 @@
-package io.armcha.elastic_view
+package io.armcha.elasticview
 
 import android.view.MotionEvent
 import android.view.View
 
-abstract class CentrePointProvider(protected val parentView: View) {
+internal abstract class CentrePointProvider(protected val parentView: View) {
 
     protected var cx = -300f
     protected var cy = -300f

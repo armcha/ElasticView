@@ -13,12 +13,9 @@ class MainActivity : AppCompatActivity() {
 
         //imageElasticView.flexibility = 8f
         imageElasticView.isDebugPathEnabled = true
-        imageElasticView.isShineEnabled = true
 
         buttonElasticView.setOnClickListener {
             startActivity(Intent(this, RecyclerViewActivity::class.java))
         }
-
-
     }
 }

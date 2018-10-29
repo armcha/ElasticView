@@ -7,7 +7,7 @@
     android:background="@android:color/white"
     tools:context=".MainActivity">
 
-    <io.armcha.elastic_view.ElasticView
+    <io.armcha.elasticview.ElasticView
         android:id="@+id/imageElasticView"
         android:layout_width="200dp"
         android:layout_height="270dp"
@@ -17,6 +17,7 @@
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
+        app:flexibility="2.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,9 +30,9 @@
             android:scaleType="centerCrop"
             android:src="@drawable/dark_knight" />
 
-    </io.armcha.elastic_view.ElasticView>
+    </io.armcha.elasticview.ElasticView>
 
-    <io.armcha.elastic_view.ElasticView
+    <io.armcha.elasticview.ElasticView
         android:id="@+id/buttonElasticView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,6 +56,6 @@
             android:textStyle="bold"
             android:text="Go to recyclerView screen"/>
 
-    </io.armcha.elastic_view.ElasticView>
+    </io.armcha.elasticview.ElasticView>
 
 </android.support.constraint.ConstraintLayout>

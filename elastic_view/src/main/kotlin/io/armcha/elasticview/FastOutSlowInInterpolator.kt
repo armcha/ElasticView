@@ -1,10 +1,10 @@
-package io.armcha.elastic_view
+package io.armcha.elasticview
 
 import android.view.animation.Interpolator
 
-class FastOutSlowInInterpolator : Interpolator {
+internal class FastOutSlowInInterpolator : Interpolator {
 
-    private val values = floatArrayOf(0.0f, 1.0E-4f, 2.0E-4f, 5.0E-4f, 9.0E-4f, 0.0014f,
+    private val _values = floatArrayOf(0.0f, 1.0E-4f, 2.0E-4f, 5.0E-4f, 9.0E-4f, 0.0014f,
             0.002f, 0.0027f, 0.0036f, 0.0046f, 0.0058f, 0.0071f, 0.0085f, 0.0101f, 0.0118f, 0.0137f,
             0.0158f, 0.018f, 0.0205f, 0.0231f, 0.0259f, 0.0289f, 0.0321f, 0.0355f, 0.0391f, 0.043f,
             0.0471f, 0.0514f, 0.056f, 0.0608f, 0.066f, 0.0714f, 0.0771f, 0.083f, 0.0893f, 0.0959f,
@@ -26,8 +26,8 @@ class FastOutSlowInInterpolator : Interpolator {
             0.9973f, 0.9977f, 0.998f, 0.9984f, 0.9986f, 0.9989f, 0.9991f, 0.9993f, 0.9995f, 0.9997f,
             0.9998f, 0.9999f, 0.9999f, 1.0f, 1.0f)
 
-    private val stepSize by lazy {
-        1 / (values.size - 1f)
+    private val _stepSize by lazy {
+        1 / (_values.size - 1f)
     }
 
     override fun getInterpolation(input: Float): Float {
@@ -35,11 +35,11 @@ class FastOutSlowInInterpolator : Interpolator {
             input >= 1.0f -> 1.0f
             input <= 0.0f -> 0.0f
             else -> {
-                val position = Math.min((input * (values.size - 1)).toInt(), values.size - 2)
-                val quantized = position * stepSize
+                val position = Math.min((input * (_values.size - 1)).toInt(), _values.size - 2)
+                val quantized = position * _stepSize
                 val diff = input - quantized
-                val weight = diff / stepSize
-                values[position] + weight * (values[position + 1] - values[position])
+                val weight = diff / _stepSize
+                _values[position] + weight * (_values[position + 1] - _values[position])
             }
         }
     }
