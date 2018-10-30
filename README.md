@@ -1,21 +1,21 @@
 # ElasticView
 
 ![Download](https://api.bintray.com/packages/armcha/maven/ElasticView/images/download.svg)
-
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
 Elastic view is usual CardView, which can **flex** from user interactions 💪  
 
-It has been written **100% in Kotlin**. ❤️  
+It has been written in **Kotlin**. ❤️  
+
+Let's see it in action 💻📲
 
 ![](screens/first.gif)
 ![](screens/second.gif)
 
-Let's see it in action 💻📲
-
-### Download sample [apk](https://github.com/armcha/ElasticView/blob/master/screens/sample.apk)
+## Download sample [apk](https://github.com/armcha/ElasticView/blob/master/screens/sample.apk)
 
 The current minSDK version is API level 21.
-### Download :arrow_down:
+## Download :arrow_down:
 
 Gradle:
 ```groovy
@@ -59,7 +59,7 @@ or from xml
         app:cardElevation="5dp"/>
 ```
 
-#Note the flexibility must be between 1f..15f
+**Note the flexibility must be between [1f..15f]**
 
 
 That's all :ok_hand:
