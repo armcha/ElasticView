@@ -3,9 +3,9 @@
 ![Download](https://api.bintray.com/packages/armcha/maven/ElasticView/images/download.svg)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
-Elastic view is usual CardView, which can **flex** from user interactions 💪  
+Elastic view is a regular **CardView**, which can **flex** from user touches💪
 
-It has been written in **Kotlin**. ❤️  
+**Kotlin**. ❤️  
 
 Let's see it in action 💻📲
 
