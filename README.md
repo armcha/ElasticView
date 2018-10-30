@@ -2,10 +2,13 @@
 
 ![Download](https://api.bintray.com/packages/armcha/maven/ElasticView/images/download.svg)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ElasticView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7274)
 
 Elastic view is a regular **CardView**, which can **flex** from user touches💪
 
 **Kotlin** ❤️  
+
+![](screens/third.gif)
 
 Let's see it in action 💻📲
 
@@ -22,7 +25,6 @@ Gradle:
 ```groovy
 implementation 'com.github.armcha:ElasticView:0.1.0'
 ```
-![](screens/third.gif)
 
 ## Setup and usage
 You can use it as a regualar CardView.
