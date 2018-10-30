@@ -21,6 +21,7 @@ Gradle:
 ```groovy
 implementation 'com.github.armcha:ElasticView:0.1.0'
 ```
+![](screens/third.gif)
 
 ## Setup and usage
 You can use it as a regualar CardView.
