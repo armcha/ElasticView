@@ -5,7 +5,7 @@
 
 Elastic view is a regular **CardView**, which can **flex** from user touches💪
 
-**Kotlin**. ❤️  
+**Kotlin** ❤️  
 
 Let's see it in action 💻📲
 
@@ -35,16 +35,17 @@ You can use it as a regualar CardView.
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
   
-        <WourChildView.../>
+        <ChildView.../>
         <!--or without childView-->
   
 </io.armcha.elasticview.ElasticView>
 ```
 
-## Customizations
+## Customization
 For now, you can only change flexibility for the view
 
 from code
+
 ```kotlin
 elasticView.flexibility = 8f
 ```
@@ -61,15 +62,12 @@ or from xml
         app:cardElevation="5dp"/>
 ```
 
-**Note the flexibility must be between [1f..15f]❗️**
+**Note the flexibility must be between [1f..15f] ❗️**
 
 
 That's all :ok_hand:
 
 ### Contact :book:
-
-Pull requests are more than welcome.
-
 
 :arrow_forward:  **Email**: chatikyana@gmail.com
 
