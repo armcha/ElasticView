@@ -13,7 +13,7 @@ Let's see it in action 💻📲
 ![](screens/first.gif)
 ![](screens/second.gif)
 
-### Download sample [apk](https://github.com/armcha/ElasticView/blob/master/screens/sample.apk) :arrow_down:
+### Download sample [apk](https://github.com/armcha/ElasticView/raw/master/screens/sample.apk) :arrow_down:
 
 The current minSDK version is API level 21.
 ### Download 
@@ -62,7 +62,7 @@ or from xml
         app:cardElevation="5dp"/>
 ```
 
-**Note the flexibility must be between [1f..15f] ❗️**
+**Note the flexibility must be between [1f..10f] ❗️**
 
 
 That's all :ok_hand:
