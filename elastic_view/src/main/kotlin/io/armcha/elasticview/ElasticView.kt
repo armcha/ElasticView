@@ -40,15 +40,6 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
         init(attrs)
     }
 
-    private fun init(attrs: AttributeSet?) {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ElasticView)
-
-        if (typedArray.hasValue(R.styleable.ElasticView_flexibility)) {
-            flexibility = typedArray.getFloat(R.styleable.ElasticView_flexibility, flexibility)
-        }
-        typedArray.recycle()
-    }
-
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         processTouchEvent(event)
         return super.dispatchTouchEvent(event)
@@ -95,6 +86,15 @@ class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(cont
                     animateToOriginalPosition()
                 }
             }
+        }
+    }
+
+    private fun init(attrs: AttributeSet?) {
+        context.obtainStyledAttributes(attrs, R.styleable.ElasticView).apply {
+            if (hasValue(R.styleable.ElasticView_flexibility)) {
+                flexibility = getFloat(R.styleable.ElasticView_flexibility, flexibility)
+            }
+            recycle()
         }
     }
 

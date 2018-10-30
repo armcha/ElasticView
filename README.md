@@ -9,6 +9,7 @@ It has been written in **Kotlin**. ❤️
 
 Let's see it in action 💻📲
 
+
 ![](screens/first.gif)
 ![](screens/second.gif)
 

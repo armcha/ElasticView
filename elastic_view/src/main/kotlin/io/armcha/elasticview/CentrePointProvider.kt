@@ -5,8 +5,9 @@ import android.view.View
 
 internal abstract class CentrePointProvider(protected val parentView: View) {
 
-    protected var cx = -300f
-    protected var cy = -300f
+    private val screenOffDistance = -300f
+    protected var cx = screenOffDistance
+    protected var cy = screenOffDistance
 
     init {
         parentView.setOnTouchListener { v, event ->
@@ -19,7 +20,7 @@ internal abstract class CentrePointProvider(protected val parentView: View) {
         val (x, y) = if (event.action == MotionEvent.ACTION_MOVE) {
             event.x to event.y
         } else {
-            -300f to -300f
+            screenOffDistance to screenOffDistance
         }
         cx = x
         cy = y
