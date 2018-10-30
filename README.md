@@ -12,14 +12,14 @@ Let's see it in action 💻📲
 ![](screens/first.gif)
 ![](screens/second.gif)
 
-## Download sample [apk](https://github.com/armcha/ElasticView/blob/master/screens/sample.apk)
+### Download sample [apk](https://github.com/armcha/ElasticView/blob/master/screens/sample.apk) :arrow_down:
 
 The current minSDK version is API level 21.
-## Download :arrow_down:
+### Download 
 
 Gradle:
 ```groovy
-implementation 'com.github.armcha:ElasticView:0.9.0'
+implementation 'com.github.armcha:ElasticView:0.1.0'
 ```
 
 ## Setup and usage
@@ -42,7 +42,7 @@ You can use it as a regualar CardView.
 ## Customizations
 For now, you can only change flexibility for the view
 
-From code
+from code
 ```kotlin
 elasticView.flexibility = 8f
 ```
@@ -59,12 +59,12 @@ or from xml
         app:cardElevation="5dp"/>
 ```
 
-**Note the flexibility must be between [1f..15f]**
+**Note the flexibility must be between [1f..15f]❗️**
 
 
 That's all :ok_hand:
 
-## Contact :book:
+### Contact :book:
 
 Pull requests are more than welcome.
 
@@ -75,7 +75,7 @@ Pull requests are more than welcome.
 
 :arrow_forward:  **Twitter**: https://twitter.com/ArmanChatikyan
 
-:arrow_forward:  **Google +**: https://plus.google.com/+ArmanChatikyan
+:arrow_forward:  **Google+**: https://plus.google.com/+ArmanChatikyan
 
 :arrow_forward:  **Website**: https://armcha.github.io/
 
