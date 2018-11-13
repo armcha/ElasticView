@@ -23,7 +23,7 @@ The current minSDK version is API level 21.
 
 Gradle:
 ```groovy
-implementation 'com.github.armcha:ElasticView:0.1.0'
+implementation 'com.github.armcha:ElasticView:0.2.0'
 ```
 
 ## Setup and usage
