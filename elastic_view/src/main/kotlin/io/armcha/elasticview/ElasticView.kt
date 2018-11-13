@@ -2,13 +2,13 @@ package io.armcha.elasticview
 
 import android.content.Context
 import android.graphics.Canvas
-import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewPropertyAnimator
+import com.google.android.material.card.MaterialCardView
 
 
-class ElasticView(context: Context, attrs: AttributeSet? = null) : CardView(context, attrs) {
+class ElasticView(context: Context, attrs: AttributeSet? = null) : MaterialCardView(context, attrs) {
 
     private val ANIMATION_DURATION = 200L
     private val ANIMATION_DURATION_SHORT = 100L

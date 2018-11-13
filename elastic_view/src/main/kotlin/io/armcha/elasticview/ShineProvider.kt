@@ -1,7 +1,7 @@
 package io.armcha.elasticview
 
 import android.graphics.*
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 
 internal class ShineProvider(parentView: View) : CentrePointProvider(parentView) {
