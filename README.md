@@ -2,10 +2,13 @@
 
 ![Download](https://api.bintray.com/packages/armcha/maven/ElasticView/images/download.svg)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ElasticView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7274)
 
 Elastic view is a regular **CardView**, which can **flex** from user touches💪
 
-**Kotlin**. ❤️  
+**Kotlin** ❤️  
+
+![](screens/third.gif)
 
 Let's see it in action 💻📲
 
@@ -13,7 +16,7 @@ Let's see it in action 💻📲
 ![](screens/first.gif)
 ![](screens/second.gif)
 
-### Download sample [apk](https://github.com/armcha/ElasticView/blob/master/screens/sample.apk) :arrow_down:
+### Download sample [apk](https://github.com/armcha/ElasticView/raw/master/screens/sample.apk) :arrow_down:
 
 The current minSDK version is API level 21.
 ### Download 
@@ -22,7 +25,6 @@ Gradle:
 ```groovy
 implementation 'com.github.armcha:ElasticView:0.1.0'
 ```
-![](screens/third.gif)
 
 ## Setup and usage
 You can use it as a regualar CardView.
@@ -35,16 +37,17 @@ You can use it as a regualar CardView.
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
   
-        <WourChildView.../>
+        <ChildView.../>
         <!--or without childView-->
   
 </io.armcha.elasticview.ElasticView>
 ```
 
-## Customizations
+## Customization
 For now, you can only change flexibility for the view
 
 from code
+
 ```kotlin
 elasticView.flexibility = 8f
 ```
@@ -61,15 +64,12 @@ or from xml
         app:cardElevation="5dp"/>
 ```
 
-**Note the flexibility must be between [1f..15f]❗️**
+**Note the flexibility must be between [1f..10f] ❗️**
 
 
 That's all :ok_hand:
 
 ### Contact :book:
-
-Pull requests are more than welcome.
-
 
 :arrow_forward:  **Email**: chatikyana@gmail.com
 
